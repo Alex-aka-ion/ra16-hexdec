@@ -12,17 +12,21 @@ export default class HexDec extends React.Component {
 
     onChangeHandler = (e) => {
         const val = e.target.value.toUpperCase();
-        if (val.match(/#[0-9A-F]{6}/)) {
-            this.setState({
-                colorInField: val,
-                colorOfBlock: val,
-                r: parseInt(val.substring(1, 3), 16),
-                g: parseInt(val.substring(3, 5), 16),
-                b: parseInt(val.substring(5, 7), 16),
-                isError: false
-            });
+        if (val.length === 7) {
+            if (val.match(/#[0-9A-F]{6}/)) {
+                this.setState({
+                    colorInField: val,
+                    colorOfBlock: val,
+                    r: parseInt(val.substring(1, 3), 16),
+                    g: parseInt(val.substring(3, 5), 16),
+                    b: parseInt(val.substring(5, 7), 16),
+                    isError: false
+                });
+            } else {
+                this.setState({colorInField: val, isError: true})
+            }
         } else {
-            this.setState({colorInField: val, isError: true})
+            this.setState({colorInField: val, isError: false})
         }
     }
 
